@@ -1,0 +1,241 @@
+/* style.css */
+body {
+    display: flex;
+    flex-direction: column; /* 요소들을 세로로 정렬합니다. */
+    align-items: center; /* 가로축 중앙 정렬 */
+    font-family: 'Arial', sans-serif; /* 기본 글꼴 설정 */
+    background-color: #f0f0f0; /* 페이지 전체 배경색 */
+    margin: 0;
+    padding: 20px; /* 페이지 상하좌우 여백 */
+}
+
+#game-container {
+    width: 600px; /* 게임 영역의 너비 */
+    height: 400px; /* 게임 영역의 높이 */
+    background-color: #000030; /* 어두운 남색 배경 (우주 느낌) */
+    border: 3px solid #333;
+    position: relative; /* 내부 요소(플레이어, 적 등)의 위치 기준점 */
+    overflow: hidden; /* 게임 영역 밖으로 나가는 요소는 숨김 */
+    margin-bottom: 20px; /* 게임 정보 영역과의 간격 */
+}
+
+/* style.css 에 있는 .player 클래스 수정 */
+
+/* style.css 예시 - 실제 코드는 다를 수 있습니다 */
+#player {
+    width: 50px; /* 플레이어 너비 (이미지에 맞게 조절) */
+    height: 50px; /* 플레이어 높이 (이미지에 맞게 조절) */
+    background-image: url('player.png'); /* 여기에 실제 파일 이름이 들어갑니다 */
+    background-size: contain; /* 이미지가 잘리지 않고 비율에 맞게 채워짐 */
+    background-repeat: no-repeat; /* 이미지가 반복되지 않도록 */
+    background-position: center; /* 이미지가 중앙에 오도록 */
+    /* 기존 border 관련 속성들은 모두 삭제 */
+    position: absolute;
+}
+
+
+
+#game-info {
+    text-align: center; /* 텍스트 중앙 정렬 */
+    padding: 10px;
+    background-color: #ddd;
+    border-radius: 5px;
+    width: 600px; /* 게임 컨테이너와 너비 맞춤 */
+}
+
+#game-info h2 {
+    margin-top: 0; /* 제목 위쪽 여백 제거 */
+}
+
+/* 화면 공통 스타일 (시작 화면, 게임 오버 화면) */
+.screen {
+    position: absolute; /* game-container 위에 겹쳐서 표시 */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* 반투명 검은 배경 */
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    z-index: 10; /* 다른 요소들보다 위에 보이도록 */
+}
+
+#start-screen {
+    /* .screen 스타일 상속 */
+}
+
+#game-over-screen {
+    /* .screen 스타일 상속 */
+    /* display: none; 은 HTML에서 인라인으로 적용했으므로 여기서는 필요 없습니다. */
+}
+
+/* 버튼 스타일 */
+button {
+    padding: 10px 20px;
+    font-size: 1.2em;
+    background-color: #4CAF50; /* 초록색 계열 */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+/* style.css 에 추가 */
+
+.laser {
+    width: 5px; /* 레이저 너비 */
+    height: 15px; /* 레이저 높이 */
+    background-color: #ff0000; /* 밝은 빨간색 레이저 */
+    position: absolute; /* game-container 내부에서 자유롭게 위치 */
+    /* 그림자 효과로 좀 더 빛나 보이게 (선택 사항) */
+    box-shadow: 0 0 5px #ff0000, 0 0 10px #ff0000;
+}
+
+/* style.css 에 추가 */
+
+
+.enemy {
+    width: 30px; /* 적 너비 (script.js의 enemyWidth와 동일) */
+    height: 30px; /* 적 높이 (script.js의 enemyHeight와 동일) */
+    /* background-color: #ffff00; */ /* 배경색은 이제 필요 없으므로 주석 처리 또는 삭제 */
+    position: absolute;
+
+    /* 이모티콘 스타일링 */
+    font-size: 28px; /* 이모티콘 크기 조절 (width/height에 맞게) */
+    text-align: center; /* 이모티콘 수평 중앙 정렬 */
+    line-height: 30px; /* 이모티콘 수직 중앙 정렬 (height와 동일하게) */
+}
+
+/* style.css 에 있는 .star 클래스 수정 */
+
+.star {
+    width: 25px; /* 스타 너비 (script.js의 starWidth와 동일) */
+    height: 25px; /* 스타 높이 (script.js의 starHeight와 동일) */
+    /* background-color는 여전히 필요 없습니다 */
+    position: absolute;
+
+    /* 이모티콘 스타일링 */
+    font-size: 22px; /* 이모티콘 크기 조절 (width/height에 맞게) */
+    text-align: center; /* 이모티콘 수평 중앙 정렬 */
+    line-height: 25px; /* 이모티콘 수직 중앙 정렬 (height와 동일하게) */
+}
+
+/* style.css */
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 20px;
+}
+
+#game-container {
+    width: 1200px; /* 600px * 2 */
+    height: 800px; /* 400px * 2 */
+    background-color: #000030;
+    border: 3px solid #333; /* 테두리 두께는 그대로 두거나 약간 늘려도 됩니다. */
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+
+
+#player {
+    width: 150px; /* 플레이어 너비 (이미지에 맞게 조절) */
+    height: 150px; /* 플레이어 높이 (이미지에 맞게 조절) */
+    background-image: url('player.png'); /* 여기에 실제 파일 이름이 들어갑니다 */
+    background-size: contain; /* 이미지가 잘리지 않고 비율에 맞게 채워짐 */
+    background-repeat: no-repeat; /* 이미지가 반복되지 않도록 */
+    background-position: center; /* 이미지가 중앙에 오도록 */
+    /* 기존 border 관련 속성들은 모두 삭제 */
+    position: absolute;
+}
+
+.laser {
+    width: 10px; /* 5px * 2 */
+    height: 30px; /* 15px * 2 */
+    background-color: #ff0000;
+    position: absolute;
+    box-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000; /* 그림자도 약간 키워도 좋습니다. */
+}
+
+.enemy { /* UFO 이모티콘 */
+    width: 60px; /* 30px * 2 */
+    height: 60px; /* 30px * 2 */
+    position: absolute;
+    font-size: 56px; /* 28px * 2 (대략적으로 맞춤, 필요시 조절) */
+    text-align: center;
+    line-height: 60px; /* height와 동일하게 */
+}
+
+.star { /* 별 이모티콘 */
+    width: 50px; /* 25px * 2 */
+    height: 50px; /* 25px * 2 */
+    position: absolute;
+    font-size: 44px; /* 22px * 2 (대략적으로 맞춤, 필요시 조절) */
+    text-align: center;
+    line-height: 50px; /* height와 동일하게 */
+}
+
+#game-info {
+    text-align: center;
+    padding: 15px; /* 약간 늘림 */
+    background-color: #ddd;
+    border-radius: 5px;
+    width: 1200px; /* game-container와 너비 맞춤 */
+    font-size: 1.2em; /* 폰트 크기 약간 늘림 (선택 사항) */
+}
+
+#game-info h2 {
+    margin-top: 0;
+}
+
+.screen { /* 시작 화면, 게임 오버 화면 공통 */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    z-index: 10;
+}
+
+#start-screen h1, #game-over-screen h2 {
+    font-size: 3em; /* 제목 폰트 크기 늘림 (선택 사항) */
+}
+#start-screen p, #game-over-screen p {
+    font-size: 1.5em; /* 일반 텍스트 폰트 크기 늘림 (선택 사항) */
+}
+
+button {
+    padding: 15px 30px; /* 버튼 크기 늘림 */
+    font-size: 1.5em; /* 버튼 폰트 크기 늘림 */
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 25px; /* 약간 늘림 */
+}
+
+button:hover {
+    background-color: #45a049;
+}
